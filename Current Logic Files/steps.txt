@@ -1,0 +1,17 @@
+DONE 1.) Understand how website blocking works using the hosts file without the use of code 
+DONE 2.) Find a way to code the functionality of adding a list of websites to be blocked by hosts
+DONE 2.a) input validation for sites
+DONE3.) Find a way to have the code run on a user-set time
+DONE3.b) Find a way to remove added websites from hosts file after set time
+DONE3.c) NEED NATIN TO COPY THE CURRENT CONTENT OF HOSTS FILE BEFORE RUNNING THE CODE AND STORE IT INTO ANOTHER TEXT FILE IN CASE OF CRASHES AND PROVIDE DISCLAIMER.
+DONe4.) Find a way to retrieve and display the presets
+DONE4.a) Find a way to retrieve webstores(presets) and add more webssites to the presets
+DONE4.b) Find a way to delete preset.
+DONE5.) Create a UI and integrate the application
+
+
+BUGS:
+DONE 1. if naay "www." ang written input, mag messup siya
+2. if unblock time is reach WHILE taking the quiz, it wont automatically destroy, instead ma stuck siya didto
+3. my checkTime still runs if ever ma correct ang quiz before the time is reached. (try cache approach) --- on 2nd try it still says cannot invoke
+UnblockedMsg()
