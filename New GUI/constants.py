@@ -30,7 +30,5 @@ mainFrame.pack()
 mainFrame.propagate(False)
 mainFrame.configure(width = 800, height = 500)
 
-bg = tk.PhotoImage(file = "images/index.png")
-click_btn= tk.PhotoImage(file='images/Start button.png')
 
 

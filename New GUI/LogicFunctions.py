@@ -21,6 +21,8 @@ unblock_time = datetime.datetime.now() + datetime.timedelta(minutes=525600)
 #This is just a variable to make sure that the function of inputting a list again does not go back while waiting for time to unblock
 doneInputting = False;
 
+
+
 def inputSites(siteList):
     global toBlock
     global doneInputting
@@ -65,53 +67,58 @@ def unBlock(siteList):
                 f.write(line)
         #cuts of all lines that were not written in line 72
         f.truncate()
-    #truncating of cache content
-    with open(currListCacheDir, 'r+') as f:
-        f.truncate(0)
+    print("UNBLOCKED ALL SITES")
+    # #truncating of cache content
+    # with open(currListCacheDir, 'r+') as f:
+    #     f.truncate(0)
 
+# def writeToBoolCache():
+#     global boolValCacheDir
+#     boolValCacheDir = "./cacheApproach/boolValCache.txt"
+#     with open(boolValCacheDir, 'w') as f:
+#         f.write("False")
 
-
-def writeToBoolCache():
-    global boolValCacheDir
-    boolValCacheDir = "./cacheApproach/boolValCache.txt"
-    with open(boolValCacheDir, 'w') as f:
-        f.write("False")
-
-
-def checkTime(currTime, doneTime, currList):
+def checkTime(doneTime, currList):
+    from constants import root
     global isExit
     global currListCacheDir
-    from ForRootinit import root
-    from OngoingBlock import UnblockedMsg
+    #import confirmatory variable (quizNewwinExist) to see if quiz window has been opened or not
+    #we import it outside the else statement so that every 10 secs it will see if the value has changed or not
+    from prompts import unblockedMsg, quizNewwinExist
+
+    # store the currList in a variable so that questions page can access it and unblock it once quiz is passed
+    global questionCurrList
+    questionCurrList = currList
+
     print(doneTime)
+    # print("CurrTime: ", currTime)
+    realCurrTime = datetime.datetime.now()
+    print(realCurrTime)
+    print("quizNewwinExist: ", quizNewwinExist)
 
-    with open(boolValCacheDir, 'r') as f:
-        for line in f:
-            isExit = str(line)
-    currListCacheDir = "./cacheApproach/currListCache.txt"
-    # we have to store current list to a text so that we can pull it any time regardless of var scope.
-    with open(currListCacheDir, 'w') as f:
-        f.write(" ".join(currList))
-    currTime = datetime.datetime.now()
-
-    if isExit == "True":
-        print("UNBLOCKED ALL SITES")
-        with open(boolValCacheDir, 'r+') as f:
-            f.truncate(0)
-        root.destroy()
-        return
-    if currTime < doneTime and isExit != "True":
+    # access isQuizPassed variable from question under the pretense that the quiz window was opened
+    if realCurrTime < doneTime and quizNewwinExist == True:
+        from questions import isQuizPassed
+        if isQuizPassed == True:
+            print("QUIZ \n WAS \n PASSED")
+            return
+    
+    if realCurrTime < doneTime:
         print("BLOCK TIME STILL ON.")
         # continue
-    else:
-        print("UNBLOCKED ALL SITES")
-        with open(boolValCacheDir, 'r+') as f:
-            f.truncate(0)
+    else:    
+        #if quiz window is open, destroy it upon reaching unblock time
+        if quizNewwinExist == True:
+            print("YOU \n HAVE \n REACHED ME")
+            from questions import quizNewwin
+            quizNewwin.destroy()  
+        # with open(boolValCacheDir, 'r+') as f:
+        #     f.truncate(0)
         unBlock(currList)
         # with open(currListCacheDir, 'r+') as f:
         #     f.truncate(0)
-        UnblockedMsg()
-        root.destroy()
+        unblockedMsg()
+        # root.destroy()
         return
     # If you want to update the current time in a loop and still 
     # be able to use a GUI, you can use the after method in Tkinter. 
@@ -120,9 +127,27 @@ def checkTime(currTime, doneTime, currList):
     # The root.after method is used to schedule the update_time function to be executed every 1000 milliseconds (1 second), allowing the GUI to update 
     # the current time in real-time without blocking the GUI. 
     # The root.mainloop method is used to start the Tkinter event loop and keep the GUI running until it is closed by the user.
-    root.after(10000, checkTime, currTime, doneTime, currList)
+    # root.after(10000, checkTime, currTime, doneTime, currList)
+    root.after(1000, checkTime, doneTime, currList)
     #this just bruteforcing it :(
-    root.withdraw()
+    # root.withdraw()
+
+      # with open(boolValCacheDir, 'r') as f:
+    #     for line in f:
+    #         isExit = str(line)
+    # currListCacheDir = "./cacheApproach/currListCache.txt"
+    # # we have to store current list to a text so that we can pull it any time regardless of var scope.
+    # with open(currListCacheDir, 'w') as f:
+    #     f.write(" ".join(currList))
+    # currTime = datetime.datetime.now()
+
+    # if isExit == "True":
+    #     print("UNBLOCKED ALL SITES")
+    #     with open(boolValCacheDir, 'r+') as f:
+    #         f.truncate(0)
+    #     # root.destroy()
+    #     return
+    # if currTime < doneTime and isExit != "True":
 
 def copyHosts(): 
     #path to be checked for copy

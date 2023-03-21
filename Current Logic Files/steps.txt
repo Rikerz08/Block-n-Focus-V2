@@ -11,7 +11,7 @@ DONE5.) Create a UI and integrate the application
 
 
 BUGS:
-DONE 1. if naay "www." ang written input, mag messup siya
+1. if naay "www." ang written input, mu duplicate siya bsag naa na 
 2. if unblock time is reach WHILE taking the quiz, it wont automatically destroy, instead ma stuck siya didto
 3. my checkTime still runs if ever ma correct ang quiz before the time is reached. (try cache approach) --- on 2nd try it still says cannot invoke
 UnblockedMsg()
