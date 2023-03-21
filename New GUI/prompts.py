@@ -260,7 +260,7 @@ def forcedUnblockWarn():
     label2.place(x = -2, y = -2)
     
     #creating the Understand button
-    button= tk.Button(newwin, image=yes, command=lambda:[newwin.destroy(), makeVariable(), quiz(), ],borderwidth=0)
+    button= tk.Button(newwin, image=yes, command=lambda:[root.withdraw(),newwin.destroy(), makeVariable(), quiz(), ],borderwidth=0)
     button.grid(column=1, row=1, padx=305, pady=142)
     
     newwin.mainloop()

@@ -82,7 +82,7 @@ class quizStart:
         from ongoingBlock import ongoingBlockStart
         nbutton = Button(quizNewwin, text="Next",command=self.nextbtn, width=10,bg="green",fg="white",font=("Roboto",16,"bold"))
         nbutton.place(x=200,y=380)
-        quitbutton = Button(quizNewwin, text="Quit", command= lambda:[quizNewwin.destroy(), ongoingBlockStart()] ,width=10,bg="red",fg="white", font=("Roboto",16,"bold"))
+        quitbutton = Button(quizNewwin, text="Quit", command= lambda:[root.deiconify(),quizNewwin.destroy(), ongoingBlockStart()] ,width=10,bg="red",fg="white", font=("Roboto",16,"bold"))
         quitbutton.place(x=380,y=380)
 
     def checkans(self, qn):
