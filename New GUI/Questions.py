@@ -1,83 +1,123 @@
 from tkinter import *
 from tkinter import messagebox as mb
 import json
-from tkinter.font import Font
+from constants import *
+# from tkinter.font import Font
+
+# def changeToDash(newwin):
+#     from dashboard import dashboard
+#     newwin.destroy()
+#     dashboard()
+
+# def UnblockedMsg():
+#     from dashboard import dashboard
+#     newwin.withdraw()
+#     newwin = Toplevel(newwin)
+#     newwin.geometry("800x200")
+#     newwin.resizable(False, False)
+#     newwin.overrideredirect(True)
+    
+#     #making the window always pop up at the center of the screen
+#     screen_width = newwin.winfo_screenwidth()
+#     screen_height = newwin.winfo_screenheight()
+    
+#     x = (screen_width / 2) - (800 / 2)
+#     y = (screen_height / 2 ) - (200 / 2)
+    
+#     newwin.geometry(f'800x200+{int(x)}+{int(y)}')
+
+#     #placing the bg image by using label
+#     label2 = Label(newwin, image= unblockedbg)
+#     label2.place(x = -2, y = -2)
+    
+    
+#     button= Button(newwin, image=proceed, command=lambda:[newwin.destroy(),dashboard()],borderwidth=0, background="#1E1A1A")
+#     button.place(x = 310, y = 138)
+    
+#     newwin.mainloop()
 
 
-def changeToDash(root):
-    from dashboard import dashboard
-    root.destroy()
-    dashboard()
+# def UnblockFailed():
+#     from ongoingBlock import ongoingBlock
+#     newwin = Toplevel(newwin)
+#     newwin.geometry("800x200")
+#     newwin.resizable(False, False)
+#     newwin.overrideredirect(True)
+    
+#     #making the window always pop up at the center of the screen
+#     screen_width = newwin.winfo_screenwidth()
+#     screen_height = newwin.winfo_screenheight()
+    
+#     x = (screen_width / 2) - (800 / 2)
+#     y = (screen_height / 2 ) - (200 / 2)
+    
+#     newwin.geometry(f'800x200+{int(x)}+{int(y)}')
 
-def UnblockedMsg():
-    from dashboard import dashboard
-    root.withdraw()
-    newwin = Toplevel(root)
+#     #placing the bg image by using label
+#     label2 = Label(newwin, image= UnblockFailedbg)
+#     label2.place(x = -2, y = -2)
+    
+    
+#     button= Button(newwin, image=ISuck, command=lambda:[newwin.destroy(), ongoingBlock()],borderwidth=0, background="#1E1A1A")
+#     button.place(x = 310, y = 138)
+    
+#     newwin.mainloop()
+    
+# def quiz():
+#     global newwin
+#     newwin = Tk()
+#     newwin.geometry("800x500")
+#     newwin.title("Quiz")
+#     # newwin.overrideredirect(True)
+    
+#     screen_width = newwin.winfo_screenwidth()
+#     screen_height = newwin.winfo_screenheight()
+
+#     x = (screen_width / 2) - (800 / 2)
+#     y = (screen_height / 2 ) - (500 / 2)
+
+#     newwin.geometry(f'800x500+{int(x)}+{int(y)}')
+    
+#     with open('quiz.json') as f:
+#         obj = json.load(f)
+        
+#     global q
+#     global options
+#     global a
+#     q = (obj['ques'])
+#     options = (obj['options'])
+#     a = (obj['ans'])
+    
+    
+    
+#     # global Question_bg
+#     # global unblockedbg
+#     # global proceed
+#     # proceed = PhotoImage(file='images/proceed.png')
+#     # unblockedbg = PhotoImage(file='images/SuccessUnblockBg.png')
+#     Question_bg = PhotoImage(file='images/Question.png')
+
+#     label3 = Label(newwin, image= Question_bg)
+#     label3.place(x = -2, y = -2)
+    
+#     QuizStart()
+#     newwin.mainloop()
+
+def quiz():
+    global newwin    
+    newwin = tk.Toplevel(root)
     newwin.geometry("800x200")
     newwin.resizable(False, False)
-    newwin.overrideredirect(True)
     
     #making the window always pop up at the center of the screen
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
+    screen_width = newwin.winfo_screenwidth()
+    screen_height = newwin.winfo_screenheight()
     
     x = (screen_width / 2) - (800 / 2)
     y = (screen_height / 2 ) - (200 / 2)
     
     newwin.geometry(f'800x200+{int(x)}+{int(y)}')
 
-    #placing the bg image by using label
-    label2 = Label(newwin, image= unblockedbg)
-    label2.place(x = -2, y = -2)
-    
-    
-    button= Button(newwin, image=proceed, command=lambda:[root.destroy(),dashboard()],borderwidth=0, background="#1E1A1A")
-    button.place(x = 310, y = 138)
-    
-    newwin.mainloop()
-
-
-def UnblockFailed():
-    from OngoingBlock import ongoingBlock
-    newwin = Toplevel(root)
-    newwin.geometry("800x200")
-    newwin.resizable(False, False)
-    newwin.overrideredirect(True)
-    
-    #making the window always pop up at the center of the screen
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-    
-    x = (screen_width / 2) - (800 / 2)
-    y = (screen_height / 2 ) - (200 / 2)
-    
-    newwin.geometry(f'800x200+{int(x)}+{int(y)}')
-
-    #placing the bg image by using label
-    label2 = Label(newwin, image= UnblockFailedbg)
-    label2.place(x = -2, y = -2)
-    
-    
-    button= Button(newwin, image=ISuck, command=lambda:[root.destroy(), ongoingBlock()],borderwidth=0, background="#1E1A1A")
-    button.place(x = 310, y = 138)
-    
-    newwin.mainloop()
-    
-def Quiz():
-    global root
-    root = Tk()
-    root.geometry("800x500")
-    root.title("Quiz")
-    root.overrideredirect(True)
-    
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-
-    x = (screen_width / 2) - (800 / 2)
-    y = (screen_height / 2 ) - (500 / 2)
-
-    root.geometry(f'800x500+{int(x)}+{int(y)}')
-    
     with open('quiz.json') as f:
         obj = json.load(f)
         
@@ -88,25 +128,14 @@ def Quiz():
     options = (obj['options'])
     a = (obj['ans'])
     
-    
-    
-    global Question_bg
-    global UnblockFailedbg
-    global ISuck
-    global unblockedbg
-    global proceed
-    proceed = PhotoImage(file='images/proceed.png')
-    unblockedbg = PhotoImage(file='images/SuccessUnblockBg.png')
     Question_bg = PhotoImage(file='images/Question.png')
-    UnblockFailedbg = PhotoImage(file='images/UnblockFailedBg.png')
-    ISuck = PhotoImage(file='images/I Suck.png')
 
-    label3 = Label(root, image= Question_bg)
+    #placing the bg image by using label
+    label3 = tk.Label(newwin, image= Question_bg)
     label3.place(x = -2, y = -2)
-    
-    
-    QuizStart()
-    root.mainloop()
+
+
+    newwin.mainloop()
 
 class QuizStart:
     def __init__(self):
@@ -119,9 +148,9 @@ class QuizStart:
         self.correct = 0
 
     def question(self, qn):
-        # t = Label(root, text="Quiz in Python Programming", width=50, bg="blue", fg="white", font=("times", 20, "bold"))
+        # t = Label(newwin, text="Quiz in Python Programming", width=50, bg="blue", fg="white", font=("times", 20, "bold"))
         # t.place(x=0, y=2)
-        qn = Label(root, text=q[qn], width=60, font=("Arial", 16, "bold"), anchor="w", bg="#FDFCDC")
+        qn = Label(newwin, text=q[qn], width=60, font=("Arial", 16, "bold"), anchor="w", bg="#FDFCDC")
 
         qn.place(x=70, y=115)
         return qn
@@ -131,7 +160,7 @@ class QuizStart:
         b = []
         yp = 160
         while val < 4:
-            btn = Radiobutton(root, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 14), bg="#FDFCDC")
+            btn = Radiobutton(newwin, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 14), bg="#FDFCDC")
             b.append(btn)
             btn.place(x=100, y=yp)
             val += 1
@@ -147,10 +176,10 @@ class QuizStart:
               val += 1
 
     def buttons(self):
-        from OngoingBlock import ongoingBlock
-        nbutton = Button(root, text="Next",command=self.nextbtn, width=10,bg="green",fg="white",font=("Roboto",16,"bold"))
+        from ongoingBlock import ongoingBlock
+        nbutton = Button(newwin, text="Next",command=self.nextbtn, width=10,bg="green",fg="white",font=("Roboto",16,"bold"))
         nbutton.place(x=200,y=380)
-        quitbutton = Button(root, text="Quit", command= lambda:[root.destroy(),ongoingBlock()] ,width=10,bg="red",fg="white", font=("Roboto",16,"bold"))
+        quitbutton = Button(newwin, text="Quit", command= lambda:[newwin.destroy(),ongoingBlock()] ,width=10,bg="red",fg="white", font=("Roboto",16,"bold"))
         quitbutton.place(x=380,y=380)
 
     def checkans(self, qn):
@@ -168,9 +197,8 @@ class QuizStart:
         
 
     def display_result(self):
-        from LogicFunctions import unBlock
-        # import datetime
-        global currLineList
+        from logicFunctions import unBlock, currList
+        from prompts import unblockedMsg, unblockFailed
         score = int(self.correct / len(q) * 100)
         result = "Score: " + str(score) + "%"
         wc = len(q) - self.correct
@@ -180,24 +208,19 @@ class QuizStart:
         # currentTime = datetime.datetime.now()
         # negativeTime = currentTime - datetime.timedelta(minutes=1)
         if score < 70:
-            UnblockFailed()
+            unblockFailed()
         else:
-            with open("./cacheApproach/currListCache.txt", "r") as f:
-                for line in f:
-                    currLineList = line.split()
-            with open("./cacheApproach/boolValCache.txt", "w") as f:
-                f.truncate(0)
-                #this is for the boolean that stops the checktime func when quiz is passed
-                f.write("True")
-            unBlock(currLineList)
+            # with open("./cacheApproach/currListCache.txt", "r") as f:
+            #     for line in f:
+            #         currLineList = line.split()
+            # with open("./cacheApproach/boolValCache.txt", "w") as f:
+            #     f.truncate(0)
+            #     #this is for the boolean that stops the checktime func when quiz is passed
+            #     f.write("True")
+            unBlock(currList)
             # checkTime(currentTime,negativeTime,currLineList)
-            UnblockedMsg()
-            # root.destroy()
-            
-                  
-# Quiz()
-        
-
+            unblockedMsg()
+            # newwin.destroy()
 
 
 

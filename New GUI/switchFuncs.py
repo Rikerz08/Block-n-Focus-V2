@@ -1,8 +1,19 @@
-from dashboard import Dashboard_start
+from constants import *
+from dashboard import dashboardStart
+
 
 #switch window from beginning warnprompt to dashboard while copying host file
-def change(newwin):
-    from LogicFunctions import copyHosts
+def changeToDashboard(newwin):
+    from logicFunctions import copyHosts
     copyHosts()
     newwin.destroy()
-    Dashboard_start()
+    displayPage(dashboardStart)
+
+#switch from preset/write page to ongoingBlock
+def switch(pagename):
+    from presetAndWriteFunctions import select
+    from ongoingBlock import ongoingBlockStart
+    select(pagename)
+    # a.destroy()
+    # root.destroy()
+    displayPage(ongoingBlockStart)
