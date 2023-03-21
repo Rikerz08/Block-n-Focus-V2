@@ -67,6 +67,7 @@ def unBlock(siteList):
                 f.write(line)
         #cuts of all lines that were not written in line 72
         f.truncate()
+    print("UNBLOCKED ALL SITES")
     # #truncating of cache content
     # with open(currListCacheDir, 'r+') as f:
     #     f.truncate(0)
@@ -81,35 +82,36 @@ def checkTime(doneTime, currList):
     from constants import root
     global isExit
     global currListCacheDir
-    from prompts import unblockedMsg
-    # from ForRootinit import root
+    #import confirmatory variable (quizNewwinExist) to see if quiz window has been opened or not
+    #we import it outside the else statement so that every 10 secs it will see if the value has changed or not
+    from prompts import unblockedMsg, quizNewwinExist
+
+    # store the currList in a variable so that questions page can access it and unblock it once quiz is passed
+    global questionCurrList
+    questionCurrList = currList
+
     print(doneTime)
     # print("CurrTime: ", currTime)
     realCurrTime = datetime.datetime.now()
     print(realCurrTime)
+    print("quizNewwinExist: ", quizNewwinExist)
 
-    # with open(boolValCacheDir, 'r') as f:
-    #     for line in f:
-    #         isExit = str(line)
-    # currListCacheDir = "./cacheApproach/currListCache.txt"
-    # # we have to store current list to a text so that we can pull it any time regardless of var scope.
-    # with open(currListCacheDir, 'w') as f:
-    #     f.write(" ".join(currList))
-    # currTime = datetime.datetime.now()
-
-    # if isExit == "True":
-    #     print("UNBLOCKED ALL SITES")
-    #     with open(boolValCacheDir, 'r+') as f:
-    #         f.truncate(0)
-    #     # root.destroy()
-    #     return
-    # if currTime < doneTime and isExit != "True":
-
+    # access isQuizPassed variable from question under the pretense that the quiz window was opened
+    if realCurrTime < doneTime and quizNewwinExist == True:
+        from questions import isQuizPassed
+        if isQuizPassed == True:
+            print("QUIZ \n WAS \n PASSED")
+            return
+    
     if realCurrTime < doneTime:
         print("BLOCK TIME STILL ON.")
         # continue
-    else:
-        print("UNBLOCKED ALL SITES")
+    else:    
+        #if quiz window is open, destroy it upon reaching unblock time
+        if quizNewwinExist == True:
+            print("YOU \n HAVE \n REACHED ME")
+            from questions import quizNewwin
+            quizNewwin.destroy()  
         # with open(boolValCacheDir, 'r+') as f:
         #     f.truncate(0)
         unBlock(currList)
@@ -129,6 +131,23 @@ def checkTime(doneTime, currList):
     root.after(1000, checkTime, doneTime, currList)
     #this just bruteforcing it :(
     # root.withdraw()
+
+      # with open(boolValCacheDir, 'r') as f:
+    #     for line in f:
+    #         isExit = str(line)
+    # currListCacheDir = "./cacheApproach/currListCache.txt"
+    # # we have to store current list to a text so that we can pull it any time regardless of var scope.
+    # with open(currListCacheDir, 'w') as f:
+    #     f.write(" ".join(currList))
+    # currTime = datetime.datetime.now()
+
+    # if isExit == "True":
+    #     print("UNBLOCKED ALL SITES")
+    #     with open(boolValCacheDir, 'r+') as f:
+    #         f.truncate(0)
+    #     # root.destroy()
+    #     return
+    # if currTime < doneTime and isExit != "True":
 
 def copyHosts(): 
     #path to be checked for copy

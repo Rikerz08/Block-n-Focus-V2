@@ -3,7 +3,7 @@ from constants import *
 
 
 def unblock(root):
-    from Questions import Quiz
+    from questions import Quiz
     root.destroy()
     Quiz()
 

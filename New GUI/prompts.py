@@ -191,10 +191,10 @@ def selectWarn(pagename,a):
     label2.place(x = -2, y = -2)
     
     #creating the Understand button
-    button= tk.Button(newwin, image=Yes, command=lambda:[newwin.destroy(),browserExitWarn(pagename)],borderwidth=0, background="#1E1A1A")
+    button= tk.Button(newwin, image=No, command=lambda:[newwin.destroy()],borderwidth=0, background="#1E1A1A")
     button.place(x = 187, y = 138)
     
-    button= tk.Button(newwin, image=No, command=lambda:[newwin.destroy()],borderwidth=0, background="#1E1A1A")
+    button= tk.Button(newwin, image=Yes, command=lambda:[newwin.destroy(),browserExitWarn(pagename)],borderwidth=0, background="#1E1A1A")
     button.place(x = 430, y = 138)
     
     newwin.mainloop()
@@ -236,9 +236,12 @@ def DeleteAllWarn():
 yes = tk.PhotoImage(file='images/Yes.png')
 forcedUnblockBg = tk.PhotoImage(file='images/ForcedUnblockBg.png')
 
+#Initialization of comfirmatory variable to see if user opens quiz window
+quizNewwinExist = False
+
 #Force unblocked prompt
 def forcedUnblockWarn():
-    from Questions import quiz
+    from questions import quiz
     newwin = tk.Toplevel(root)
     newwin.geometry("800x200")
     newwin.resizable(False, False)
@@ -257,11 +260,15 @@ def forcedUnblockWarn():
     label2.place(x = -2, y = -2)
     
     #creating the Understand button
-    button= tk.Button(newwin, image=yes, command=lambda:[newwin.destroy(),quiz()],borderwidth=0)
+    button= tk.Button(newwin, image=yes, command=lambda:[newwin.destroy(), makeVariable(), quiz(), ],borderwidth=0)
     button.grid(column=1, row=1, padx=305, pady=142)
     
     newwin.mainloop()
 
+#function to let the checkTime func know if user tried to take a quiz or not
+def makeVariable():
+    global quizNewwinExist
+    quizNewwinExist = True
 
 # Images for Successfully Unblocked prompt
 unblockedbg = tk.PhotoImage(file='images/SuccessUnblockBg.png')
@@ -271,7 +278,7 @@ proceed = tk.PhotoImage(file='images/proceed.png')
 # Successfully Unblocked prompt
 def unblockedMsg():
     # from Questions import Quiz
-    from dashboard import dashboardStart
+    from dashboard import dashboardStart      
     root.withdraw()
     newwin = tk.Toplevel(root)
     newwin.geometry("800x200")
@@ -292,10 +299,16 @@ def unblockedMsg():
     label2.place(x = -2, y = -2)
     
     
-    button= tk.Button(newwin, image=proceed, command=lambda:[newwin.destroy(), root.deiconify(), root.overrideredirect(False), displayPage(dashboardStart)],borderwidth=0, background="#1E1A1A")
+    button= tk.Button(newwin, image=proceed, command=lambda:[newwin.destroy(), makeVariableFalse(), root.deiconify(), root.overrideredirect(False), displayPage(dashboardStart)],borderwidth=0, background="#1E1A1A")
     button.place(x = 310, y = 138)
     
     newwin.mainloop()
+
+#function for returning quizNewwinExist to False value because it seems na 
+#ma carry over siya the next iterations
+def makeVariableFalse():
+    global quizNewwinExist
+    quizNewwinExist = False
 
 #Quiz failed prompt images
 UnblockFailedbg = tk.PhotoImage(file='images/UnblockFailedBg.png')
