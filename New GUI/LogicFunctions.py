@@ -96,7 +96,7 @@ def checkTime(doneTime, currList):
     print(realCurrTime)
     print("quizNewwinExist: ", quizNewwinExist)
 
-    # access isQuizPassed variable from question under the pretense that the quiz window was opened
+    # access isQuizPassed variable from question page under the pretense that the quiz window was opened
     if realCurrTime < doneTime and quizNewwinExist == True:
         from questions import isQuizPassed
         if isQuizPassed == True:
