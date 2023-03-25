@@ -299,9 +299,10 @@ def unblockedMsg():
     label2.place(x = -2, y = -2)
     
     
-    button= tk.Button(newwin, image=proceed, command=lambda:[newwin.destroy(), makeVariableFalse(), root.deiconify(), root.overrideredirect(False), displayPage(dashboardStart)],borderwidth=0, background="#1E1A1A")
+    button= tk.Button(newwin, image=proceed, command=lambda:[enableExit(), newwin.destroy(), makeVariableFalse(), root.deiconify(), displayPage(dashboardStart)],borderwidth=0, background="#1E1A1A")
     button.place(x = 310, y = 138)
     
+    newwin.protocol("WM_DELETE_WINDOW", disableExit)
     newwin.mainloop()
 
 #function for returning quizNewwinExist to False value because it seems na 

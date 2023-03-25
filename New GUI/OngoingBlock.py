@@ -18,5 +18,6 @@ def ongoingBlockStart():
     #Let us create a dummy button and pass the image
     button= tk.Button(mainFrame, image=click_btn,command=lambda:[forcedUnblockWarn()],borderwidth=0, background="#000000")
     button.place(x = 318, y = 400)
-    root.overrideredirect(True)
+    # root.overrideredirect(True)
+    root.protocol("WM_DELETE_WINDOW", disableExit)
 

@@ -15,14 +15,6 @@ y = (screen_height / 2 ) - (500 / 2)
 
 root.geometry(f'800x500+{int(x)}+{int(y)}')
 
-def displayPage(page):
-    deletePage()
-    page()
-
-def deletePage():
-    for frame in mainFrame.winfo_children():
-        frame.destroy()
-
 global mainFrame
 
 mainFrame = tk.Frame(root)
@@ -30,5 +22,19 @@ mainFrame.pack()
 mainFrame.propagate(False)
 mainFrame.configure(width = 800, height = 500)
 
+def displayPage(page):
+    deletePage()
+    page()
 
+#need to delete other frames, otherwise it will all duplicate, just followed the video
+def deletePage():
+    for frame in mainFrame.winfo_children():
+        frame.destroy()
 
+#empty function for disabling x button on titlebar on ongoingBlock
+def disableExit():
+    pass
+
+#returning the function og x button on titlebar to normal function
+def enableExit():
+    root.protocol("WM_DELETE_WINDOW", root.destroy)
