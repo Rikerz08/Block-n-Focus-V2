@@ -1,8 +1,11 @@
 from tkinter import *
 from tkinter import messagebox as mb
 import json
+import random
 from constants import *
 
+Quit = tk.PhotoImage(file='images/Quit.png')
+Next = tk.PhotoImage(file='images/Next.png')
 
 def quiz():
     # initialize variable to let logicFunc page know if quiz was passed or not
@@ -27,9 +30,14 @@ def quiz():
     global q
     global options
     global a
-    q = (obj['ques'])
-    options = (obj['options'])
-    a = (obj['ans'])
+    q = obj['ques']
+    options = obj['options']
+    a = obj['ans']
+    
+    # shuffle the questions randomly
+    questions = list(zip(q, options, a))
+    random.shuffle(questions)
+    q, options, a = zip(*questions)
     
     Question_bg = PhotoImage(file='images/Question2.png')
 
@@ -55,22 +63,21 @@ class quizStart:
         # t.place(x=0, y=2)
         qn = Label(quizNewwin, text=q[qn], width=60, font=("Arial", 16, "bold"), anchor="w", bg="#FDFCDC")
 
-        qn.place(x=70, y=115)
+        qn.place(x=50, y=112)
         return qn
 
     def radiobtns(self):
         val = 0
         b = []
-        yp = 160
+        yp = 200
         while val < 4:
             btn = Radiobutton(quizNewwin, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 14), bg="#FDFCDC",fg="black")
             # btn = Radiobutton(quizNewwin, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 14), bg="#FDFCDC",fg="white", selectcolor = "black")
             b.append(btn)
-            btn.place(x=100, y=yp)
+            btn.place(x=50, y=yp)
             val += 1
             yp += 40
         return b
-
     def display_options(self, qn):
         val = 0
         self.opt_selected.set(0)
@@ -81,9 +88,9 @@ class quizStart:
 
     def buttons(self):
         from ongoingBlock import ongoingBlockStart
-        nbutton = Button(quizNewwin, text="Next",command=self.nextbtn, width=10,bg="green",fg="white",font=("Roboto",16,"bold"))
+        nbutton = Button(quizNewwin, image=Next,command=self.nextbtn,background="#FDFCDC")
         nbutton.place(x=200,y=380)
-        quitbutton = Button(quizNewwin, text="Quit", command= lambda:[root.deiconify(),quizNewwin.destroy(), ongoingBlockStart()] ,width=10,bg="red",fg="white", font=("Roboto",16,"bold"))
+        quitbutton = Button(quizNewwin, image=Quit, background="#FDFCDC" , command= lambda:[root.deiconify(),quizNewwin.destroy(), ongoingBlockStart()])
         quitbutton.place(x=380,y=380)
 
     def checkans(self, qn):
