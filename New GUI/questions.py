@@ -80,7 +80,7 @@ class quizStart:
         b = []
         yp = 200
         while val < 4:
-            btn = Radiobutton(quizNewwin, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 14), bg="#FDFCDC",fg="black")
+            btn = Radiobutton(quizNewwin, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 15), bg="#FDFCDC",fg="black")
             # btn = Radiobutton(quizNewwin, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 14), bg="#FDFCDC",fg="white", selectcolor = "black")
             b.append(btn)
             btn.place(x=50, y=yp)
