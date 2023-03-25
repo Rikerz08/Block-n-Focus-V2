@@ -6,6 +6,12 @@ from constants import *
 
 Quit = tk.PhotoImage(file='images/Quit.png')
 Next = tk.PhotoImage(file='images/Next.png')
+#empty function for clicking x of quizNewwin same as radio exit button
+def disableExit():
+    from ongoingBlock import ongoingBlockStart
+    root.deiconify(),
+    quizNewwin.destroy(), 
+    ongoingBlockStart()
 
 def quiz():
     # initialize variable to let logicFunc page know if quiz was passed or not
@@ -44,6 +50,9 @@ def quiz():
     #placing the bg image by using label
     label3 = tk.Label(quizNewwin, image= Question_bg)
     label3.place(x = -2, y = -2)
+
+    #customizing the function of X
+    quizNewwin.protocol("WM_DELETE_WINDOW", disableExit)
 
     quizStart()
     quizNewwin.mainloop()
