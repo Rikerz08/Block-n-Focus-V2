@@ -32,7 +32,7 @@ def deletePage():
         frame.destroy()
 
 #empty function for disabling x button on titlebar on ongoingBlock
-def disableExit():
+def disableButton():
     pass
 
 #returning the function og x button on titlebar to normal function
