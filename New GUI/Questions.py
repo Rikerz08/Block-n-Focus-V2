@@ -111,12 +111,14 @@ class quizStart:
             self.correct += 1
         self.qn += 1
         if self.qn == len(q):
+            quizNewwin.destroy()  
             self.display_result()
         else:
             self.display_options(self.qn)       
         
 
     def display_result(self):
+        global score
         from logicFunctions import unBlock, questionCurrList
         from prompts import unblockedMsg, unblockFailed
         score = int(self.correct / len(q) * 100)
@@ -125,6 +127,7 @@ class quizStart:
         correct = "No. of correct answers: " + str(self.correct)
         wrong = "No. of wrong answers: " + str(wc)
         mb.showinfo("Result", "\n".join([result, correct, wrong]))
+        
         # currentTime = datetime.datetime.now()
         # negativeTime = currentTime - datetime.timedelta(minutes=1)
         if score < 70:
