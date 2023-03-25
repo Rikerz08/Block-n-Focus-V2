@@ -236,15 +236,26 @@ def DeleteAllWarn():
 yes = tk.PhotoImage(file='images/Yes.png')
 forcedUnblockBg = tk.PhotoImage(file='images/ForcedUnblockBg.png')
 
-#Initialization of comfirmatory variable to see if user opens quiz window
+#Initialization of comfirmatory variable to see if user opens quiz window and quiz prompt
 quizNewwinExist = False
+forcedUnblockWarnExist = False
+
+#same as quiz page variable setter
+def makeForcedUnblockWarnExist():
+    global forcedUnblockWarnExist
+    forcedUnblockWarnExist = True
+#same as quiz page variable setter
+def makeForcedUnblockWarnExistFalse():
+    global forcedUnblockWarnExist
+    forcedUnblockWarnExist = False
 
 #Force unblocked prompt
 def forcedUnblockWarn():
     from questions import quiz
-    newwin = tk.Toplevel(root)
-    newwin.geometry("800x200")
-    newwin.resizable(False, False)
+    global forcedUnblockWarnNewwin
+    forcedUnblockWarnNewwin = tk.Toplevel(root)
+    forcedUnblockWarnNewwin.geometry("800x200")
+    forcedUnblockWarnNewwin.resizable(False, False)
     
     #making the window always pop up at the center of the screen
     screen_width = root.winfo_screenwidth()
@@ -253,17 +264,17 @@ def forcedUnblockWarn():
     x = (screen_width / 2) - (800 / 2)
     y = (screen_height / 2 ) - (200 / 2)
     
-    newwin.geometry(f'800x200+{int(x)}+{int(y)}')
+    forcedUnblockWarnNewwin.geometry(f'800x200+{int(x)}+{int(y)}')
 
     #placing the bg image by using label
-    label2 = tk.Label(newwin, image= forcedUnblockBg)
+    label2 = tk.Label(forcedUnblockWarnNewwin, image= forcedUnblockBg)
     label2.place(x = -2, y = -2)
     
     #creating the Understand button
-    button= tk.Button(newwin, image=yes, command=lambda:[root.withdraw(),newwin.destroy(), makeVariable(), quiz(), ],borderwidth=0)
+    button= tk.Button(forcedUnblockWarnNewwin, image=yes, command=lambda:[root.withdraw(),forcedUnblockWarnNewwin.destroy(), makeVariable(), quiz(), ],borderwidth=0)
     button.grid(column=1, row=1, padx=305, pady=142)
     
-    newwin.mainloop()
+    forcedUnblockWarnNewwin.mainloop()
 
 #function to let the checkTime func know if user tried to take a quiz or not
 def makeVariable():
@@ -299,7 +310,7 @@ def unblockedMsg():
     label2.place(x = -2, y = -2)
     
     
-    button= tk.Button(newwin, image=proceed, command=lambda:[enableExit(), newwin.destroy(), makeVariableFalse(), root.deiconify(), displayPage(dashboardStart)],borderwidth=0, background="#1E1A1A")
+    button= tk.Button(newwin, image=proceed, command=lambda:[enableExit(), newwin.destroy(), makeVariableFalse(), makeForcedUnblockWarnExistFalse(), root.deiconify(), displayPage(dashboardStart)],borderwidth=0, background="#1E1A1A")
     button.place(x = 310, y = 138)
     
     newwin.protocol("WM_DELETE_WINDOW", disableButton)
