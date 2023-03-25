@@ -2,6 +2,7 @@ from tkinter import *
 import datetime
 from prompts import *
 from presetAndWriteFunctions import *
+from tkinter.font import Font
 
 #we set unblock time to placeholding(1 year in minutes) value that is so long just so it's viable for the outer "if conditions" to work
 #this is just to make the code run long enough to reach the asking of user input for the minutes
@@ -12,6 +13,12 @@ write_bg = PhotoImage(file='images/WriteBg.png')
 Add = PhotoImage(file='images/Add.png')
 Delete = PhotoImage(file='images/PresetDelete.png')
 Back2 = PhotoImage(file='images/Back 2.png')
+
+calibri = Font(
+    family="Calibri",
+    size=21,
+    slant="roman",
+)
 
 def clear_text():
        entry1.delete(0, END)
@@ -28,7 +35,7 @@ def writeStart():
     
     # Listbox!
     global writeMyListbox
-    writeMyListbox = Listbox(my_frame, width=53,height=5, yscrollcommand=my_scrollbar.set,xscrollcommand=my_scrollbarX.set, font=('Times', 21), selectmode=SINGLE, borderwidth=0, activestyle="none")
+    writeMyListbox = Listbox(my_frame, width=53,height=5, yscrollcommand=my_scrollbar.set,xscrollcommand=my_scrollbarX.set, font=calibri, selectmode=SINGLE, borderwidth=0, activestyle="none")
     #configure scrollbar
     my_scrollbar.config(command=writeMyListbox.yview)
     my_scrollbar.pack(side=RIGHT, fill=Y)
@@ -60,5 +67,5 @@ def writeStart():
     button4.place(x = 53, y = 10)
 
     global entry1
-    entry1 = Entry(mainFrame, width=50, font=("Helvetica", 20))
+    entry1 = Entry(mainFrame, width=50, font=calibri)
     entry1.place(x = 22, y = 367)

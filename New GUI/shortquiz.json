@@ -1,0 +1,17 @@
+{
+    "ques":[
+        "1.) What has to be broken before you can use it?",
+        "2.) What question can you never answer yes to",
+        "3.) What month of the year has 28 days?",
+        "4.) What is full of holes but still holds water?"
+    ],
+    "options":[
+        ["Egg", "Glass","Pot","Love"],
+        ["Are you hungry?","Are you asleep yet?","Are you Strong?","Did you Fart?"],
+        ["January","Febuary","december","All of the above"],
+        ["paper","Cup","Sponge","All of them"]
+    ],
+    "ans":[1,2,4,3]
+}
+
+
