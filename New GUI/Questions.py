@@ -17,7 +17,7 @@ def quiz():
     screen_height = quizNewwin.winfo_screenheight()
     
     x = (screen_width / 2) - (800 / 2)
-    y = (screen_height / 2 ) - (200 / 2)
+    y = (screen_height / 2 ) - (500 / 2)
     
     quizNewwin.geometry(f'800x500+{int(x)}+{int(y)}')
 
@@ -31,7 +31,7 @@ def quiz():
     options = (obj['options'])
     a = (obj['ans'])
     
-    Question_bg = PhotoImage(file='images/Question.png')
+    Question_bg = PhotoImage(file='images/Question2.png')
 
     #placing the bg image by using label
     label3 = tk.Label(quizNewwin, image= Question_bg)
@@ -63,7 +63,8 @@ class quizStart:
         b = []
         yp = 160
         while val < 4:
-            btn = Radiobutton(quizNewwin, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 14), bg="#FDFCDC")
+            btn = Radiobutton(quizNewwin, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 14), bg="#FDFCDC",fg="black")
+            # btn = Radiobutton(quizNewwin, text=" ", variable=self.opt_selected, value=val + 1, font=("Arial", 14), bg="#FDFCDC",fg="white", selectcolor = "black")
             b.append(btn)
             btn.place(x=100, y=yp)
             val += 1

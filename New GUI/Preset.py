@@ -2,6 +2,7 @@ from tkinter import *
 import datetime
 from prompts import *
 from presetAndWriteFunctions import *
+from tkinter.font import Font
 
 #we set unblock time to placeholding(1 year in minutes) value that is so long just so it's viable for the outer "if conditions" to work
 #this is just to make the code run long enough to reach the asking of user input for the minutes
@@ -11,6 +12,13 @@ preset_bg = PhotoImage(file='images/Presets.png')
 Delete = PhotoImage(file='images/PresetDelete.png')
 DeleteAll = PhotoImage(file='images/PresetDeleteAll.png')
 Back = PhotoImage(file='images/Back.png')
+
+calibri = Font(
+    family="Calibri",
+    size=20,
+    slant="roman",
+)
+
 
 def presetStart():
     from blockScreen import blockScreenStart
@@ -24,7 +32,7 @@ def presetStart():
 
     # Listbox!
     global presetMyListbox
-    presetMyListbox = Listbox(my_frame, width=53,height=8, yscrollcommand=my_scrollbar.set,xscrollcommand=my_scrollbarX.set, font=('Times', 20), selectmode=SINGLE, borderwidth=0, activestyle="none")
+    presetMyListbox = Listbox(my_frame, width=53,height=8, yscrollcommand=my_scrollbar.set,xscrollcommand=my_scrollbarX.set, font=('calibri', 20), selectmode=SINGLE, borderwidth=0, activestyle="none")
     #configure scrollbar
     my_scrollbar.config(command=presetMyListbox.yview)
     my_scrollbar.pack(side=RIGHT, fill=Y)

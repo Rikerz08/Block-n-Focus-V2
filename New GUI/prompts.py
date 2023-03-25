@@ -336,7 +336,7 @@ def unblockFailed():
     label2.place(x = -2, y = -2)
     
     
-    button= tk.Button(newwin, image=ISuck, command=lambda:[newwin.destroy(), displayPage(ongoingBlockStart)],borderwidth=0, background="#1E1A1A")
+    button= tk.Button(newwin, image=ISuck, command=lambda:[root.deiconify(),newwin.destroy(), displayPage(ongoingBlockStart)],borderwidth=0, background="#1E1A1A")
     button.place(x = 310, y = 138)
     
     newwin.mainloop()
