@@ -84,7 +84,7 @@ def checkTime(doneTime, currList):
     global currListCacheDir
     #import confirmatory variable (quizNewwinExist) to see if quiz window has been opened or not
     #we import it outside the else statement so that every 10 secs it will see if the value has changed or not
-    from prompts import unblockedMsg, quizNewwinExist
+    from prompts import unblockedMsg, quizNewwinExist, forcedUnblockWarnExist
 
     # store the currList in a variable so that questions page can access it and unblock it once quiz is passed
     global questionCurrList
@@ -95,6 +95,7 @@ def checkTime(doneTime, currList):
     realCurrTime = datetime.datetime.now()
     print(realCurrTime)
     print("quizNewwinExist: ", quizNewwinExist)
+    print("forcedUnblockWarnExist: ", forcedUnblockWarnExist)
 
     # access isQuizPassed variable from question page under the pretense that the quiz window was opened
     if realCurrTime < doneTime and quizNewwinExist == True:
@@ -107,6 +108,11 @@ def checkTime(doneTime, currList):
         print("BLOCK TIME STILL ON.")
         # continue
     else:    
+        #if quiz prompt is still open, destroy it upon reaching unblock time to avoid any inescapable bugs
+        if forcedUnblockWarnExist == True:
+            from prompts import forcedUnblockWarnNewwin
+            forcedUnblockWarnNewwin.destroy()
+
         #if quiz window is open, destroy it upon reaching unblock time
         if quizNewwinExist == True:
             print("YOU \n HAVE \n REACHED ME")
