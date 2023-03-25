@@ -56,10 +56,10 @@ def exitWarn():
     label2.place(x = -2, y = -2)
     
     #creating the Understand button
-    button= tk.Button(newwin, image=Yes, command=lambda:[root.destroy()],borderwidth=0, background="#1E1A1A")
+    button= tk.Button(newwin, image=No, command=lambda:[newwin.destroy()],borderwidth=0, background="#1E1A1A")
     button.place(x = 187, y = 138)
     
-    button= tk.Button(newwin, image=No, command=lambda:[newwin.destroy()],borderwidth=0, background="#1E1A1A")
+    button= tk.Button(newwin, image=Yes, command=lambda:[root.destroy()],borderwidth=0, background="#1E1A1A")
     button.place(x = 430, y = 138)
     
     newwin.mainloop()
