@@ -1,13 +1,6 @@
 from tkinter import *
 from constants import *
 
-
-def unblock(root):
-    from questions import Quiz
-    root.destroy()
-    Quiz()
-
-
 Dashboard_bg = PhotoImage(file='images/Dashboard 4.png')
 Block = PhotoImage(file='images/Block 2.png')
 Unblock = PhotoImage(file='images/Unblock.png')
