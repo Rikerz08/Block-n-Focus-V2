@@ -314,6 +314,7 @@ def unblockedMsg():
     button.place(x = 310, y = 138)
     
     newwin.protocol("WM_DELETE_WINDOW", disableButton)
+    newwin.attributes("-topmost", True)
     newwin.mainloop()
 
 #function for returning quizNewwinExist to False value because it seems na 
